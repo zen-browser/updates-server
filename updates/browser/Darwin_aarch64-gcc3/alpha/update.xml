@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <updates>
-  <update type="minor" displayVersion="1.0.0-a.5" appVersion="1.0.0-a.5" platformVersion="128.0" buildID="20240716152936">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.0.0-a.5/undefined" hashFunction="sha512" hashValue="45a773a213f43d327e3590bfd36d3f197402f3c9b203e23ed02b1c7fde2b3b24be5e615508025b9ac26aab708de6bcf1f95da629b076586ddfad39e4ea76e903" size="57104764"/>
+  <update type="minor" displayVersion="1.0.0-a.6" appVersion="1.0.0-a.6" platformVersion="128.0.2" buildID="20240724173018">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.0.0-a.6/undefined" hashFunction="sha512" hashValue="89566785fb7e84e524e2093416c038e5300eb3ff24017e61a664b1d12e12227f841b23d048471e1b540206da078aeae6299ffa91cf733427f125174ad61762b2" size="57427396"/>
   </update>
 </updates>
