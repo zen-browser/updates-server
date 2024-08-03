@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<updates>
-  <update type="minor" displayVersion="1.0.0-a.11" appVersion="1.0.0-a.11" platformVersion="128.0.3" buildID="20240803010443">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.0.0-a.11/macos-x64.mar" hashFunction="sha512" hashValue="288a71e65df2d33e0ecea4c12191a508bad44e09ece79ef0085ab985cf742a07c1ceea12f83c14907e6aade92a8c257928bd495bb36b40fcc0cd967536f28f46" size="65425608"/>
-  </update>
-</updates>
