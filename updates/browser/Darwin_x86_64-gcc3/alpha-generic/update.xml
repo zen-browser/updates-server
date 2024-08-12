@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <updates>
-  <update type="minor" displayVersion="1.0.0-a.17" appVersion="1.0.0-a.17" platformVersion="129.0" buildID="20240811170228">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.0.0-a.17/macos-x64.mar" hashFunction="sha512" hashValue="07f372dfdb0c2b967b179fbd704f27c6d38c23aef440653fe4c6afede443cd89307b651f38aba1a038e13f482e4fdc8a9405c512b2a8dc7f5683634b574104d4" size="65523712"/>
+  <update type="minor" displayVersion="1.0.0-a.18" appVersion="1.0.0-a.18" platformVersion="129.0" buildID="20240812105013">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.0.0-a.18/macos-x64.mar" hashFunction="sha512" hashValue="e3a4d14bc6fc22f00b71d6c4fdd3ec91b659f12316352ed89b0147fa7eb2477a7e2964bab3c9023957b2d082ee989396f860c30dbf130bd4d4c6b93a2ccc6376" size="65518364"/>
   </update>
 </updates>
