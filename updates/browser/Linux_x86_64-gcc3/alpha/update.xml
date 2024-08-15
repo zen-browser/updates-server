@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <updates>
-  <update type="minor" displayVersion="1.0.0-a.19" appVersion="1.0.0-a.19" platformVersion="129.0" buildID="20240814151343">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.0.0-a.19/linux.mar" hashFunction="sha512" hashValue="e1abd02f03977434733775cd8636d10d02cad98b1fdec4614fdd2de58e31c5bd1c207bbe2d9b8fb4cb9da460f523037fe978e983b28ef9a72913d3596b21e54e" size="67056396"/>
+  <update type="minor" displayVersion="1.0.0-a.20" appVersion="1.0.0-a.20" platformVersion="129.0" buildID="20240815213707">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.0.0-a.20/linux.mar" hashFunction="sha512" hashValue="e78b272bae1faddea3b5ca1b69c1ba2a94e931e5feeb47509634eab34398f70b2bb6b708b251bb73859ed5cb19e078f6ed620e51e5c67116d9f54e6f6147ad55" size="67053672"/>
   </update>
 </updates>
