@@ -263,7 +263,7 @@ install_zen_browser() {
     fi
     log_warn "Downloading Zen from $appimage_url"
     log_info ""
-    temp_file="/tmp/zen-browser.AppImage"
+    temp_file="/tmp/ZenBrowser.AppImage"
     download_until_success "$appimage_url" "$temp_file" "install"
     process_appimage "$temp_file" ZenBrowser
     log_info ""
