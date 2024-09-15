@@ -1,5 +1,32 @@
 #!/bin/bash
 
+set -euo pipefail
+function log() {
+    local RED='\033[0;31m'
+    local YELLOW='\033[1;33m'
+    local GREEN='\033[0;32m'
+    local YELLOW_BG='\033[43m'
+    local BLACK_FG='\033[30m'
+    NC='\033[0m'
+    if [[ "${1}" == "info" ]]; then
+        printf "${GREEN}[i] ${2}${NC}\n"
+    elif [[ "${1}" == "warn" ]]; then
+        printf "${YELLOW}[w] ${2}${NC}\n"
+    elif [[ "${1}" == "err" ]]; then
+        printf "${RED}[e] ${2}${NC}\n"
+    elif [[ "${1}" == "highlight" ]]; then
+        printf "${YELLOW_BG}[h] ${BLACK_FG}${2}${NC}\n"
+    else
+        echo "WRONG SEVERITY : $1"
+        exit 1
+    fi
+}
+
+function log_info() { log "info" "$1"; }
+function log_warn() { log "warn" "$1"; }
+function log_err() { log "err" "$1"; }
+function log_highlight() { log "highlight" "$1"; }
+
 # Function to check if AVX2 is supported
 check_avx2_support() {
     if grep -q avx2 /proc/cpuinfo; then
@@ -29,31 +56,32 @@ check_zsync_installed() {
 
 # Kawaii ASCII Art for the script
 kawaii_art() {
-    echo "╔════════════════════════════════════════════════════╗"
-    echo "║                                                    ║"
-    echo "║    (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧  Zen Browser Installer ✧ﾟ･:*      ║"
-    echo "║                                                    ║"
+    log_info "╔════════════════════════════════════════════════════╗"
+    log_info "║                                                    ║"
+    log_info "║    (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧  Zen Browser Installer            ║"
+    log_info "║                                                    ║"
     
     if check_avx2_support; then
-        echo "║    CPU: AVX2 Supported (Optimized Version)         ║"
+        log_info "║    CPU: AVX2 Supported (Optimized Version)         ║"
     else
-        echo "║    CPU: AVX2 Not Supported (Generic Version)       ║"
+        log_info "║    CPU: AVX2 Not Supported (Generic Version)       ║"
     fi
 
     if check_installation_status; then
-        echo "║    Status: Zen Browser Installed                   ║"
+        log_info "║    Status: Zen Browser Installed                   ║"
     else
-        echo "║    Status: Zen Browser Not Installed               ║"
+        log_info "║    Status: Zen Browser Not Installed               ║"
     fi
 
     if check_zsync_installed; then
-        echo "║    zsync: Installed (Needed for Updates)           ║"
+        log_info "║    zsync: Installed (Needed for Updates)           ║"
     else
-        echo "║    zsync: Not Installed (Needed for Updates)       ║"
+        log_info "║    zsync: Not Installed (Needed for Updates)       ║"
     fi
 
-    echo "╚════════════════════════════════════════════════════╝"
-    echo
+    log_info "║                                                    ║"
+    log_info "╚════════════════════════════════════════════════════╝"
+    log_info ""
 }
 
 # Function to download a file with unlimited retries
@@ -63,48 +91,42 @@ download_until_success() {
     local mode="$3"  # New parameter to indicate the mode
 
     while true; do
-        echo "+----------------------------------------------------+"
         case "$mode" in
             "zsync")
-                echo "| Checking for Update...                             |"
+                log_info "Checking for Update..."
                 ;;
             "update")
-                echo "| Updating...                                        |"
+                log_info "Updating Zen Browser..."
                 ;;
             "install")
-                echo "| Installing...                                      |"
+                log_info "Installing Zen Browser..."
                 ;;
-        esac
-        echo "+----------------------------------------------------+"
+        esac 
         if curl -# -L --connect-timeout 30 --max-time 600 "$url" -o "$output_path"; then
-            echo "+----------------------------------------------------+"
             case "$mode" in
                 "zsync")
-                    echo "| Checking for Update successfully!                  |"
+                    log_info "Checking for Update successfully!"
                     ;;
                 "update")
-                    echo "| Update completed successfully!                     |"
+                    log_info "Update completed successfully!"
                     ;;
                 "install")
-                    echo "| Install completed successfully!                    |"
+                    log_info "Install completed successfully!"
                     ;;
             esac
-            echo "+----------------------------------------------------+"
             break
         else
-            echo "+----------------------------------------------------+"
             case "$mode" in
                 "zsync")
-                    echo "| (⌣_⌣” ) Checking for Update failed, retrying...    |"
+                    log_err "(⌣_⌣” ) Checking for Update failed, retrying..."
                     ;;
                 "update")
-                    echo "| (⌣_⌣” ) Update failed, retrying...                 |"
+                    log_err "(⌣_⌣” ) Update failed, retrying..."
                     ;;
                 "install")
-                    echo "| (⌣_⌣” ) Install failed, retrying...                |"
+                    log_err "(⌣_⌣” ) Install failed, retrying..."
                     ;;
             esac
-            echo "+----------------------------------------------------+"
             sleep 5  # Optional: wait a bit before retrying
         fi
     done
@@ -165,38 +187,44 @@ process_appimage() {
 
 uninstall_appimage() {
     local app_name="$1"
-
+    log_info ""
     # Remove AppImage
+    log_warn "Removing Zen Browser AppImage..."
     rm -f ~/.local/share/AppImage/${app_name}.AppImage
 
     # Remove .desktop file
+    log_warn "Removing Zen Browser .desktop file..."
     rm -f ~/.local/share/applications/${app_name}.desktop
 
     # Remove icon
+    log_warn "Removing Zen Browser icon..."
     rm -f ~/.local/share/icons/${app_name}.png
 
-    echo "(︶︹︺) Uninstalled ${app_name}"
+    log_info ""
+    log_info "(︶︹︺) Uninstalled ${app_name}"
 }
 
 check_for_updates() {
     local zsync_url
     local zsync_file
     local appimage_url
-
+    log_info ""
     if check_avx2_support; then
         zsync_url="https://github.com/zen-browser/desktop/releases/latest/download/zen-specific.AppImage.zsync"
         appimage_url="https://github.com/zen-browser/desktop/releases/latest/download/zen-specific.AppImage"
+        log_warn "Auto dedecting AVX2 support..."
     else
         zsync_url="https://github.com/zen-browser/desktop/releases/latest/download/zen-generic.AppImage.zsync"
         appimage_url="https://github.com/zen-browser/desktop/releases/latest/download/zen-generic.AppImage"
+        log_warn "AVX2 not supported. Using generic version..."
     fi
 
     zsync_file="${HOME}/Downloads/zen-browser.AppImage.zsync"
 
     if check_installation_status; then
-        echo "Checking for updates..."
+        log_info "Checking for updates..."
         if ! check_zsync_installed; then
-            echo "( ͡° ʖ̯ ͡°) zsync is not installed. Please install zsync to enable update functionality."
+            log_err "Zsync is not installed. Please install zsync to enable update functionality."
             return 1
         fi
         download_until_success "$zsync_url" "$zsync_file" "zsync"
@@ -204,47 +232,49 @@ check_for_updates() {
         if echo "$update_output" | grep -q "verifying download...checksum matches OK"; then
             local version
             version="1.0.0-a.39"
-            echo "(｡♥‿♥｡) Zen Browser is up-to-date! Version: $version"
+            log_info "(｡♥‿♥｡) Zen Browser is up-to-date! Version: $version"
         else
             echo "Updating Zen Browser..."
             download_until_success "$appimage_url" ~/.local/share/AppImage/ZenBrowser.AppImage "update"
             process_appimage ~/.local/share/AppImage/ZenBrowser.AppImage ZenBrowser
-            echo "(｡♥‿♥｡) Zen Browser updated to version: 1.0.0-a.39!"
+            log_info "(｡♥‿♥｡) Zen Browser updated to the latest!"
         fi
         rm -f "$zsync_file"
     else
-        echo "( ͡° ʖ̯ ͡°) Zen Browser is not installed."
+        log_err "Zen Browser is not installed!"
         main_menu
     fi
 }
 
 install_zen_browser() {
     local appimage_url
+    log_info ""
 
     if check_avx2_support; then
         appimage_url="https://github.com/zen-browser/desktop/releases/latest/download/zen-specific.AppImage"
+        log_warn "Auto dedecting AVX2 support..."
     else
         appimage_url="https://github.com/zen-browser/desktop/releases/latest/download/zen-generic.AppImage"
+        log_warn "AVX2 not supported. Using generic version..."
     fi
-
-    download_until_success "$appimage_url" ~/Downloads/ZenBrowser.AppImage "install"
-    process_appimage ~/Downloads/ZenBrowser.AppImage ZenBrowser
-    echo "(｡♥‿♥｡) Zen Browser installed successfully!"
+    log_warn "Downloading Zen from $appimage_url"
+    log_info ""
+    temp_file="/tmp/zen-browser.AppImage"
+    download_until_success "$appimage_url" "$temp_file" "install"
+    process_appimage "$temp_file" ZenBrowser
+    log_info ""
+    log_info "(｡♥‿♥｡) Zen Browser installed successfully!"
+    rm -f "$temp_file"
 }
 
 main_menu() {
-    echo "(★^O^★) What would you like to do?"
-    echo "+----------------------------------------------------+"
-    echo "| 1) Install                                         |"
-    echo "+----------------------------------------------------+"
-    echo "| 2) Uninstall                                       |"
-    echo "+----------------------------------------------------+"
+    log_info "(★^O^★) What would you like to do?"
+    log_info "  1) Install"
+    log_info "  2) Uninstall"
     if check_zsync_installed; then
-        echo "| 3) Check for Updates                               |"
-        echo "+----------------------------------------------------+"
+        log_info "  3) Check for Updates"
     fi
-    echo "| 0) Exit                                            |"
-    echo "+----------------------------------------------------+"
+    log_info "  0) Exit"
     read -p "Enter your choice (0-3): " main_choice
 
     case $main_choice in
@@ -258,16 +288,16 @@ main_menu() {
             if check_zsync_installed; then
                 check_for_updates
             else
-                echo "(•ˋ _ ˊ•) Invalid choice. Exiting..."
+                log_err "(•ˋ _ ˊ•) Invalid choice. Exiting..."
                 exit 1
             fi
             ;;
         0)
-            echo "(⌒‿⌒) Exiting..."
+            log_info "(⌒‿⌒) Exiting..."
             exit 0
             ;;
         *)
-            echo "(•ˋ _ ˊ•) Invalid choice. Exiting..."
+            log_err "(•ˋ _ ˊ•) Invalid choice. Exiting..."
             exit 1
             ;;
     esac
@@ -283,3 +313,7 @@ kawaii_art
 
 # Execute the main menu
 main_menu
+
+# End of script
+log_info ""
+log_info "Thank you for using Zen Browser Installer!"
