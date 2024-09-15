@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# LICENSE:
+# Done by: https://github.com/Muko-Tabi
+# This script is licensed under the MIT License.
+
 set -euo pipefail
 function log() {
     local RED='\033[0;31m'
