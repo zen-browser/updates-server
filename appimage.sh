@@ -234,9 +234,7 @@ check_for_updates() {
         download_until_success "$zsync_url" "$zsync_file" "zsync"
         update_output=$(zsync -i ~/.local/share/AppImage/ZenBrowser.AppImage -o ~/.local/share/AppImage/ZenBrowser.AppImage "$zsync_file" 2>&1)
         if echo "$update_output" | grep -q "verifying download...checksum matches OK"; then
-            local version
-            version="1.0.0-a.39"
-            log_info "(｡♥‿♥｡) Zen Browser is up-to-date! Version: $version"
+            log_info "(｡♥‿♥｡) Congrats! Zen Browser is up-to-date!"
         else
             echo "Updating Zen Browser..."
             download_until_success "$appimage_url" ~/.local/share/AppImage/ZenBrowser.AppImage "update"
