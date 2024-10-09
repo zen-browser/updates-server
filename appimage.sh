@@ -177,7 +177,7 @@ process_appimage() {
             sub(/^[^ ]+/, "", parts[2])  # Remove the first word (original command)
             print "Exec=" home "/.local/share/AppImage/" app_name ".AppImage" parts[2]
         } else {
-            print "Exec=" home "/.local/share/AppImage/" app_name ".AppImage"
+            print "Exec=" home "/.local/share/AppImage/" app_name ".AppImage %u"
         }
         next
     }
