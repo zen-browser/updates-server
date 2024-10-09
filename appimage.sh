@@ -2,6 +2,7 @@
 
 # LICENSE:
 # Done by: https://github.com/Muko-Tabi
+# Twilight support added by: https://github.com/LeMoonStar
 # This script is licensed under the MIT License.
 
 set -euo pipefail
@@ -31,6 +32,18 @@ function log_warn() { log "warn" "$1"; }
 function log_err() { log "err" "$1"; }
 function log_highlight() { log "highlight" "$1"; }
 
+# Download URL globals
+# Zen Stable
+ZEN_STABLE_GENERIC="https://github.com/zen-browser/desktop/releases/latest/download/zen-generic.AppImage"
+ZEN_STABLE_SPECIFIC="https://github.com/zen-browser/desktop/releases/latest/download/zen-specific.AppImage"
+# Zen Twilight
+ZEN_TWILIGHT_GENERIC="https://github.com/zen-browser/desktop/releases/download/twilight/zen-generic.AppImage"
+ZEN_TWILIGHT_SPECIFIC="https://github.com/zen-browser/desktop/releases/download/twilight/zen-specific.AppImage"
+
+# Filename base globals
+ZEN_STABLE_NAME_BASE="ZenBrowser"
+ZEN_TWILIGHT_NAME_BASE="ZenTwilight"
+
 # Function to check if AVX2 is supported
 check_avx2_support() {
     if grep -q avx2 /proc/cpuinfo; then
@@ -42,7 +55,8 @@ check_avx2_support() {
 
 # Function to check if Zen Browser is installed
 check_installation_status() {
-    if [ -f ~/.local/share/AppImage/ZenBrowser.AppImage ]; then
+    local app_name="$1"
+    if [ -f ~/.local/share/AppImage/$app_name.AppImage ]; then
         return 0  # Zen Browser installed
     else
         return 1  # Zen Browser not installed
@@ -60,6 +74,15 @@ check_zsync_installed() {
 
 # Kawaii ASCII Art for the script
 kawaii_art() {
+    local is_twilight="$1"
+    local file_base
+
+    if [[ "$is_twilight" == "1" ]]; then
+        file_base="$ZEN_TWILIGHT_NAME_BASE"
+    else
+        file_base="$ZEN_STABLE_NAME_BASE"
+    fi
+
     log_info "╔════════════════════════════════════════════════════╗"
     log_info "║                                                    ║"
     log_info "║    (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧  Zen Browser Installer            ║"
@@ -71,7 +94,7 @@ kawaii_art() {
         log_info "║    CPU: AVX2 Not Supported (Generic Version)       ║"
     fi
 
-    if check_installation_status; then
+    if check_installation_status "$file_base"; then
         log_info "║    Status: Zen Browser Installed                   ║"
     else
         log_info "║    Status: Zen Browser Not Installed               ║"
@@ -209,36 +232,56 @@ uninstall_appimage() {
 }
 
 check_for_updates() {
+    local is_twilight="$1"
     local zsync_url
     local zsync_file
     local appimage_url
+    local file_base
+
+    if [[ "$is_twilight" == 1 ]]; then
+        file_base="$ZEN_TWILIGHT_NAME_BASE"
+    else
+        file_base="$ZEN_STABLE_NAME_BASE"
+    fi
+
     log_info ""
+    
     if check_avx2_support; then
-        zsync_url="https://github.com/zen-browser/desktop/releases/latest/download/zen-specific.AppImage.zsync"
-        appimage_url="https://github.com/zen-browser/desktop/releases/latest/download/zen-specific.AppImage"
+        if [[ "$is_twilight" == 1 ]]; then
+            zsync_url="$ZEN_TWILIGHT_SPECIFIC.zsync"
+            appimage_url="$ZEN_TWILIGHT_SPECIFIC"
+        else
+            zsync_url="$ZEN_STABLE_SPECIFIC.zsync"
+            appimage_url="$ZEN_STABLE_SPECIFIC"
+        fi
         log_warn "Auto dedecting AVX2 support..."
     else
-        zsync_url="https://github.com/zen-browser/desktop/releases/latest/download/zen-generic.AppImage.zsync"
-        appimage_url="https://github.com/zen-browser/desktop/releases/latest/download/zen-generic.AppImage"
+        if [[ "$is_twilight" == 1 ]]; then
+            zsync_url="$ZEN_TWILIGHT_GENERIC.zsync"
+            appimage_url="$ZEN_TWILIGHT_GENERIC"
+        else
+            zsync_url="$ZEN_STABLE_GENERIC.zsync"
+            appimage_url="$ZEN_STABLE_GENERIC"
+        fi
         log_warn "AVX2 not supported. Using generic version..."
     fi
 
-    zsync_file="${HOME}/Downloads/zen-browser.AppImage.zsync"
+    zsync_file="${HOME}/Downloads/$file_base.AppImage.zsync"
 
-    if check_installation_status; then
+    if check_installation_status "$file_base"; then
         log_info "Checking for updates..."
         if ! check_zsync_installed; then
             log_err "Zsync is not installed. Please install zsync to enable update functionality."
             return 1
         fi
         download_until_success "$zsync_url" "$zsync_file" "zsync"
-        update_output=$(zsync -i ~/.local/share/AppImage/ZenBrowser.AppImage -o ~/.local/share/AppImage/ZenBrowser.AppImage "$zsync_file" 2>&1)
+        update_output=$(zsync -i ~/.local/share/AppImage/$file_base.AppImage -o ~/.local/share/AppImage/$file_base.AppImage "$zsync_file" 2>&1)
         if echo "$update_output" | grep -q "verifying download...checksum matches OK"; then
             log_info "(｡♥‿♥｡) Congrats! Zen Browser is up-to-date!"
         else
             echo "Updating Zen Browser..."
-            download_until_success "$appimage_url" ~/.local/share/AppImage/ZenBrowser.AppImage "update"
-            process_appimage ~/.local/share/AppImage/ZenBrowser.AppImage ZenBrowser
+            download_until_success "$appimage_url" ~/.local/share/AppImage/$file_base.AppImage "update"
+            process_appimage ~/.local/share/AppImage/$file_base.AppImage $file_base
             log_info "(｡♥‿♥｡) Zen Browser updated to the latest!"
         fi
         rm -f "$zsync_file"
@@ -249,27 +292,57 @@ check_for_updates() {
 }
 
 install_zen_browser() {
+    local is_twilight="$1"
     local appimage_url
+    local file_base
+
+    if [[ "$is_twilight" == 1 ]]; then
+        file_base="$ZEN_TWILIGHT_NAME_BASE"
+    else
+        file_base="$ZEN_STABLE_NAME_BASE"
+    fi
+
     log_info ""
 
     if check_avx2_support; then
-        appimage_url="https://github.com/zen-browser/desktop/releases/latest/download/zen-specific.AppImage"
+        if [[ "$is_twilight" == 1 ]]; then
+            appimage_url="$ZEN_TWILIGHT_SPECIFIC"
+        else
+            appimage_url="$ZEN_STABLE_SPECIFIC"
+        fi
         log_warn "Auto dedecting AVX2 support..."
     else
-        appimage_url="https://github.com/zen-browser/desktop/releases/latest/download/zen-generic.AppImage"
+        if [[ "$is_twilight" == 1 ]]; then
+            appimage_url="$ZEN_TWILIGHT_GENERIC"
+        else
+            appimage_url="$ZEN_STABLE_GENERIC"
+        fi
         log_warn "AVX2 not supported. Using generic version..."
     fi
+
     log_warn "Downloading Zen from $appimage_url"
     log_info ""
-    temp_file="/tmp/ZenBrowser.AppImage"
+    temp_file="/tmp/$file_base.AppImage"
     download_until_success "$appimage_url" "$temp_file" "install"
-    process_appimage "$temp_file" ZenBrowser
+    process_appimage "$temp_file" $file_base
     log_info ""
     log_info "(｡♥‿♥｡) Zen Browser installed successfully!"
     rm -f "$temp_file"
 }
 
 main_menu() {
+    # Check if the script is in twilight mode.
+    local is_twilight
+    if [[ "$1" == "twilight" ]]; then
+        is_twilight=1
+        log_warn "The installer is in Twilight mode!"
+    else
+        is_twilight=0
+    fi
+
+    # Show kawaii ASCII art
+    kawaii_art $is_twilight
+
     log_info "(★^O^★) What would you like to do?"
     log_info "  1) Install"
     log_info "  2) Uninstall"
@@ -281,14 +354,18 @@ main_menu() {
 
     case $main_choice in
         1)
-            install_zen_browser
+            install_zen_browser $is_twilight
             ;;
         2)
-            uninstall_appimage ZenBrowser
+            if [[ "$is_twilight" == 1 ]]; then
+                uninstall_appimage "$ZEN_TWILIGHT_NAME_BASE"
+            else
+                uninstall_appimage "$ZEN_STABLE_NAME_BASE"
+            fi
             ;;
         3)
             if check_zsync_installed; then
-                check_for_updates
+                check_for_updates $is_twilight
             else
                 log_err "(•ˋ _ ˊ•) Invalid choice. Exiting..."
                 exit 1
@@ -310,11 +387,8 @@ mkdir -p ~/.local/share/applications
 mkdir -p ~/.local/share/icons
 mkdir -p ~/.local/share/AppImage
 
-# Show kawaii ASCII art
-kawaii_art
-
 # Execute the main menu
-main_menu
+main_menu "${1:-stable}"
 
 # End of script
 log_info ""
