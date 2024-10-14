@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <updates>
-  <update type="minor" displayVersion="1.0.1-a.8" appVersion="1.0.1-a.8" platformVersion="131.0.2" buildID="20241010183015">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.0.1-a.8/linux-generic.mar" hashFunction="sha512" hashValue="d298492dc032f57d046f66f1525584edf470427a8ba5ad0803370bd32282d259103894a689436420d1dd2417d5097484cf8827f66f2110bcc1745b5f9ec48d7e" size="71421408"/>
+  <update type="minor" displayVersion="1.0.1-a.9" appVersion="1.0.1-a.9" platformVersion="131.0.3" buildID="20241014204439">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.0.1-a.9/linux-generic.mar" hashFunction="sha512" hashValue="00dd420f2bc41601070de7fad0f4dfc53359528c5de585a2c509cc70599a7a23b07e2956cc84a3137cc27cebee9b1accaea69f5d18ec9911dfbbc38f6ed0b63f" size="71412304"/>
   </update>
 </updates>
