@@ -254,7 +254,7 @@ check_for_updates() {
             zsync_url="$ZEN_STABLE_SPECIFIC.zsync"
             appimage_url="$ZEN_STABLE_SPECIFIC"
         fi
-        log_warn "Auto dedecting AVX2 support..."
+        log_warn "Auto detecting AVX2 support..."
     else
         if [[ "$is_twilight" == 1 ]]; then
             zsync_url="$ZEN_TWILIGHT_GENERIC.zsync"
@@ -310,7 +310,7 @@ install_zen_browser() {
         else
             appimage_url="$ZEN_STABLE_SPECIFIC"
         fi
-        log_warn "Auto dedecting AVX2 support..."
+        log_warn "Auto detecting AVX2 support..."
     else
         if [[ "$is_twilight" == 1 ]]; then
             appimage_url="$ZEN_TWILIGHT_GENERIC"
