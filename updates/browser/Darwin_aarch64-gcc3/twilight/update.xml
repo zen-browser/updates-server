@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <updates>
-  <update type="minor" displayVersion="1.0.1-t.14" appVersion="1.0.1-t.14" platformVersion="132.0" buildID="20241030130757">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/twilight/macos-aarch64.mar" hashFunction="sha512" hashValue="5004054f35991aac156f85d551f34560144e6c6e15319080489693d6992520a9cfefa5ec64107fbbd1c292f75714115fbb59b44f38571c0bae1b952f27cd0377" size="64401336"/>
+  <update type="minor" displayVersion="1.0.1-t.15" appVersion="1.0.1-t.15" platformVersion="132.0" buildID="20241030201828">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/twilight/macos-aarch64.mar" hashFunction="sha512" hashValue="1b8b2f029c2434ba249e8c0af465655a935acd22d1e0b20cecadd3bb54c6f8d6bdbae5fd909092b4db2755455be402e0f81e6e9ca0d3dcf1c6d21f1d6ae20199" size="64402032"/>
   </update>
 </updates>
