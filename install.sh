@@ -4,7 +4,9 @@ app_name=zen
 literal_name_of_installation_directory=".tarball-installations"
 universal_path_for_installation_directory="$HOME/$literal_name_of_installation_directory"
 app_installation_directory="$universal_path_for_installation_directory/zen"
-official_package_location="https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-generic.tar.bz2"
+official_package_location_generic="https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-generic.tar.bz2"
+official_package_location_specific="https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-specific.tar.bz2"
+official_package_location="$official_package_location_generic"
 tar_location=$(mktemp /tmp/zen.XXXXXX.tar.bz2)
 open_tar_application_data_location="zen"
 local_bin_path="$HOME/.local/bin"
@@ -13,6 +15,19 @@ app_bin_in_local_bin="$local_bin_path/$app_name"
 desktop_in_local_applications="$local_application_path/$app_name.desktop"
 icon_path="$app_installation_directory/browser/chrome/icons/default/default128.png"
 executable_path=$app_installation_directory/zen
+
+# Function to check if AVX2 is supported
+check_avx2_support() {
+  if grep -q avx2 /proc/cpuinfo; then
+      return 0  # AVX2 supported
+  else
+      return 1  # AVX2 not supported
+  fi
+}
+
+if check_avx2_support; then
+  official_package_location="$official_package_location_specific"
+fi
 
 echo "Welcome to Zen tarball installer, just chill and wait for the installation to complete!"
 
