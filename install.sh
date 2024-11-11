@@ -124,7 +124,7 @@ echo "Installation is successful"
 
 sleep 1
 
-echo "Done, and done, have fun!"
+echo "Done, and done, have fun! 🐷"
 
 sleep 1
 
