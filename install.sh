@@ -49,8 +49,6 @@ if [ -f "$desktop_in_local_applications" ]; then
   rm "$desktop_in_local_applications"
 fi
 
-sleep 1
-
 echo "Installing the latest package"
 curl -L -o $tar_location $official_package_location
 if [ $? -eq 0 ]; then
@@ -117,15 +115,7 @@ Exec=$executable_path --ProfileManager
 " >> $desktop_in_local_applications
 
 echo "Created desktop entry successfully"
-
-sleep 1
-
 echo "Installation is successful"
-
-sleep 1
-
 echo "Done, and done, have fun! 🐷"
-
-sleep 1
 
 exit 0
