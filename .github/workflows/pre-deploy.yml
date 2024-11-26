@@ -24,6 +24,7 @@ jobs:
       - name: Fetch and override deploy branch
         run: |
           git checkout main
+          git pull
 
           git branch -D deploy || true
           git checkout -b deploy
@@ -42,3 +43,5 @@ jobs:
           commit_user_name: Zen Browser Robot
           commit_user_email: zen-browser-auto@users.noreply.github.com
           branch: deploy
+          push_options: '--force'
+
