@@ -23,7 +23,6 @@ jobs:
 
       - name: Fetch and override deploy branch
         run: |
-          git fetch origin main:main
           git checkout main
 
           git branch -D deploy || true
