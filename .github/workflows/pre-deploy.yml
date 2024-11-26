@@ -38,3 +38,4 @@ jobs:
           commit_user_name: Zen Browser Robot
           commit_user_email: zen-browser-auto@users.noreply.github.com
           branch: deploy
+          
