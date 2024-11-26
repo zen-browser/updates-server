@@ -31,5 +31,5 @@ for new, old in REDIRECTS.items():
                             nf.write(content)
                 print(f"Redirected {old} -> {new} in {target}/{branch}")
 
-print("Done!")
+print("Done! Let's build the site next!")
 
