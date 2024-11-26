@@ -1,0 +1,41 @@
+
+name: Pre-Deploy Updates Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Fetch and override deploy branch
+        run: |
+          git fetch origin main:main
+          git checkout main
+
+          git branch -D deploy || true
+          git checkout -b deploy
+
+      - name: Write redirects
+        run: |
+          python scripts/write_redirects.py
+      
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 🔖 Updated update server
+          commit_user_name: Zen Browser Robot
+          commit_user_email: zen-browser-auto@users.noreply.github.com
+          branch: deploy
