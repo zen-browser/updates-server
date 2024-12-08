@@ -5,6 +5,7 @@ import os
 # broken branch -> fixed branch
 REDIRECTS = {
     "twilightundefined": "twilight", # A bug there was with previous twilight updates
+    "alpha": "beta", # Alpha -> Beta
 }
 
 UPDATES_ROOT = "updates/browser"
