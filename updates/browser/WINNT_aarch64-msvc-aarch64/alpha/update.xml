@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<updates>
-  <update type="minor" displayVersion="1.0.1-a.20" appVersion="1.0.1-a.20" platformVersion="133.0" buildID="20241128040307">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.0.1-a.20/windows-arm64.mar" hashFunction="sha512" hashValue="2db4f1db04ed4afa8ec1909c9e11fbabbf79a0c389e20541ee0cb9eaa6613e10ec8170acec5abfd3648320c23b4ce08643634ac0147974eb8bea7b74820634e4" size="67403054"/>
-  </update>
-</updates>
