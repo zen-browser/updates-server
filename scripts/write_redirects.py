@@ -6,6 +6,7 @@ import os
 REDIRECTS = {
     "twilightundefined": "twilight", # A bug there was with previous twilight updates
     "alpha": "beta", # Alpha -> Beta
+    "alpha-generic": "beta-generic", # Alpha -> Beta
 }
 
 UPDATES_ROOT = "updates/browser"
