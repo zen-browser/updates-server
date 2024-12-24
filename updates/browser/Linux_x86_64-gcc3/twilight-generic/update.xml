@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<updates>
-  <update type="minor" displayVersion="1.0.2-t.5" appVersion="1.0.2-t.5" platformVersion="133.0.3" buildID="20241223001326">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/twilight/linux-generic.mar" hashFunction="sha512" hashValue="2d02879fb0ff91689f27f2ca873584749de7a839d2a4aa371e90fc7b825481cad846bc12466f4e558ffa4761c8c56ac7c0d070409797541976fa71b024f5bc3f" size="78599808"/>
-  </update>
-</updates>

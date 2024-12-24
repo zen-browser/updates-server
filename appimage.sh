@@ -34,11 +34,9 @@ function log_highlight() { log "highlight" "$1"; }
 
 # Download URL globals
 # Zen Stable
-ZEN_STABLE_GENERIC="https://github.com/zen-browser/desktop/releases/latest/download/zen-generic.AppImage"
-ZEN_STABLE_SPECIFIC="https://github.com/zen-browser/desktop/releases/latest/download/zen-specific.AppImage"
+ZEN_STABLE="https://github.com/zen-browser/desktop/releases/latest/download/zen-x86_64.AppImage"
 # Zen Twilight
-ZEN_TWILIGHT_GENERIC="https://github.com/zen-browser/desktop/releases/download/twilight/zen-generic.AppImage"
-ZEN_TWILIGHT_SPECIFIC="https://github.com/zen-browser/desktop/releases/download/twilight/zen-specific.AppImage"
+ZEN_TWILIGHT="https://github.com/zen-browser/desktop/releases/download/twilight/zen-x86_64.AppImage"
 
 # Filename base globals
 ZEN_STABLE_NAME_BASE="ZenBrowser"
@@ -87,13 +85,7 @@ kawaii_art() {
     log_info "║                                                    ║"
     log_info "║    (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧  Zen Browser Installer            ║"
     log_info "║                                                    ║"
-    
-    if check_avx2_support; then
-        log_info "║    CPU: AVX2 Supported (Optimized Version)         ║"
-    else
-        log_info "║    CPU: AVX2 Not Supported (Generic Version)       ║"
-    fi
-
+ 
     if check_installation_status "$file_base"; then
         log_info "║    Status: Zen Browser Installed                   ║"
     else
@@ -246,24 +238,13 @@ check_for_updates() {
 
     log_info ""
     
-    if check_avx2_support; then
-        if [[ "$is_twilight" == 1 ]]; then
-            zsync_url="$ZEN_TWILIGHT_SPECIFIC.zsync"
-            appimage_url="$ZEN_TWILIGHT_SPECIFIC"
-        else
-            zsync_url="$ZEN_STABLE_SPECIFIC.zsync"
-            appimage_url="$ZEN_STABLE_SPECIFIC"
-        fi
-        log_warn "Auto detecting AVX2 support..."
+
+    if [[ "$is_twilight" == 1 ]]; then
+        zsync_url="$ZEN_TWILIGHT.zsync"
+        appimage_url="$ZEN_TWILIGHT"
     else
-        if [[ "$is_twilight" == 1 ]]; then
-            zsync_url="$ZEN_TWILIGHT_GENERIC.zsync"
-            appimage_url="$ZEN_TWILIGHT_GENERIC"
-        else
-            zsync_url="$ZEN_STABLE_GENERIC.zsync"
-            appimage_url="$ZEN_STABLE_GENERIC"
-        fi
-        log_warn "AVX2 not supported. Using generic version..."
+        zsync_url="$ZEN_STABLE.zsync"
+        appimage_url="$ZEN_STABLE"
     fi
 
     zsync_file="${HOME}/Downloads/$file_base.AppImage.zsync"
@@ -304,20 +285,10 @@ install_zen_browser() {
 
     log_info ""
 
-    if check_avx2_support; then
-        if [[ "$is_twilight" == 1 ]]; then
-            appimage_url="$ZEN_TWILIGHT_SPECIFIC"
-        else
-            appimage_url="$ZEN_STABLE_SPECIFIC"
-        fi
-        log_warn "Auto detecting AVX2 support..."
+    if [[ "$is_twilight" == 1 ]]; then
+        appimage_url="$ZEN_TWILIGHT"
     else
-        if [[ "$is_twilight" == 1 ]]; then
-            appimage_url="$ZEN_TWILIGHT_GENERIC"
-        else
-            appimage_url="$ZEN_STABLE_GENERIC"
-        fi
-        log_warn "AVX2 not supported. Using generic version..."
+        appimage_url="$ZEN_STABLE"
     fi
 
     log_warn "Downloading Zen from $appimage_url"
