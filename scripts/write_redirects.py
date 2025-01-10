@@ -5,9 +5,9 @@ import os
 # broken branch -> fixed branch
 REDIRECTS = {
     "twilightundefined": "twilight", # A bug there was with previous twilight updates
-    "alpha": "beta", # Alpha -> Beta
-    "alpha-generic": "beta", # Alpha -> Beta
-    "beta-generic": "beta", # Beta (Generic) -> Beta
+    "alpha": "release", # Alpha -> Beta
+    "alpha-generic": "release", # Alpha -> Beta
+    "beta-generic": "release", # Beta (Generic) -> Beta
     "twilight-generic": "twilight", # Twilight (Generic) -> Twilight
     "beta": "release", # Beta -> Release
 }
