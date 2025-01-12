@@ -321,7 +321,11 @@ main_menu() {
         log_info "  3) Check for Updates"
     fi
     log_info "  0) Exit"
-    read -p "Enter your choice (0-3): " main_choice
+    if check_zsync_installed; then
+        read -p "Enter your choice (0-3): " main_choice
+    else
+        read -p "Enter your choice (0-2): " main_choice
+    fi
 
     case $main_choice in
         1)
