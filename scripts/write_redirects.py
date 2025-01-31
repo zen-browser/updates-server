@@ -10,6 +10,7 @@ REDIRECTS = {
     "beta-generic": "release", # Beta (Generic) -> Beta
     "twilight-generic": "twilight", # Twilight (Generic) -> Twilight
     "beta": "release", # Beta -> Release
+    "release-generic": "release", # Generic release -> release
 }
 
 UPDATES_ROOT = "updates/browser"
