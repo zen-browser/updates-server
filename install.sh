@@ -4,8 +4,8 @@ app_name=zen
 literal_name_of_installation_directory=".tarball-installations"
 universal_path_for_installation_directory="$HOME/$literal_name_of_installation_directory"
 app_installation_directory="$universal_path_for_installation_directory/zen"
-official_package_location="https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-x86_64.tar.bz2"
-tar_location=$(mktemp /tmp/zen.XXXXXX.tar.bz2)
+official_package_location="https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-x86_64.tar.xz"
+tar_location=$(mktemp /tmp/zen.XXXXXX.tar.xz)
 open_tar_application_data_location="zen"
 local_bin_path="$HOME/.local/bin"
 local_application_path="$HOME/.local/share/applications"
@@ -43,7 +43,7 @@ else
     exit
 fi
 
-tar -xvjf $tar_location
+tar -xvJf $tar_location
 
 echo "Installed and untarred successfully"
 
