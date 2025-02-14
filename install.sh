@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eo pipefail
+
 app_name=zen
 literal_name_of_installation_directory=".tarball-installations"
 universal_path_for_installation_directory="$HOME/$literal_name_of_installation_directory"
