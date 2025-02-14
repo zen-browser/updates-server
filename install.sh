@@ -4,7 +4,7 @@ app_name=zen
 literal_name_of_installation_directory=".tarball-installations"
 universal_path_for_installation_directory="$HOME/$literal_name_of_installation_directory"
 app_installation_directory="$universal_path_for_installation_directory/zen"
-official_package_location="https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-x86_64.tar.bz2"
+official_package_location="https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-x86_64.tar.xz"
 tar_location=$(mktemp /tmp/zen.XXXXXX.tar.bz2)
 open_tar_application_data_location="zen"
 local_bin_path="$HOME/.local/bin"
@@ -37,13 +37,13 @@ fi
 echo "Installing the latest package"
 curl -L -o $tar_location $official_package_location
 if [ $? -eq 0 ]; then
-    echo OK
+  echo OK
 else
-    echo "Installation failed. Curl not found or not installed"
-    exit
+  echo "Installation failed. Curl not found or not installed"
+  exit
 fi
 
-tar -xvjf $tar_location
+tar -xvf $tar_location
 
 echo "Installed and untarred successfully"
 
@@ -66,7 +66,7 @@ fi
 touch $app_bin_in_local_bin
 chmod u+x $app_bin_in_local_bin
 echo "#!/bin/bash
-$executable_path" >> $app_bin_in_local_bin
+$executable_path" >>$app_bin_in_local_bin
 
 echo "Created executable for your \$PATH if you ever need"
 
@@ -74,7 +74,6 @@ if [ ! -d $local_application_path ]; then
   echo "Creating the $local_application_path directory for desktop file"
   mkdir $local_application_path
 fi
-
 
 touch $desktop_in_local_applications
 echo "
@@ -101,7 +100,7 @@ Exec=$executable_path --private-window %u
 [Desktop Action profile-manager-window]
 Name=Open the Profile Manager
 Exec=$executable_path --ProfileManager
-" >> $desktop_in_local_applications
+" >>$desktop_in_local_applications
 
 echo "Created desktop entry successfully"
 echo "Installation is successful"
