@@ -20,6 +20,20 @@ echo "Welcome to Zen tarball installer, just chill and wait for the installation
 
 sleep 1
 
+echo "Downloading the latest package"
+curl -L -o $tar_location $official_package_location
+if [ $? -eq 0 ]; then
+    echo OK
+else
+    echo "Download failed. Curl not found or not installed"
+    exit
+fi
+
+echo "Extracting Zen Browser..."
+tar -xvJf $tar_location
+
+echo "Untarred successfully!"
+
 echo "Checking to see if an older installation exists"
 if [ -f "$app_bin_in_local_bin" ]; then
   echo "Old bin file detected, removing..."
@@ -35,19 +49,6 @@ if [ -f "$desktop_in_local_applications" ]; then
   echo "Old app files are found, removing..."
   rm "$desktop_in_local_applications"
 fi
-
-echo "Installing the latest package"
-curl -L -o $tar_location $official_package_location
-if [ $? -eq 0 ]; then
-    echo OK
-else
-    echo "Installation failed. Curl not found or not installed"
-    exit
-fi
-
-tar -xvJf $tar_location
-
-echo "Installed and untarred successfully"
 
 if [ ! -d $universal_path_for_installation_directory ]; then
   echo "Creating the $universal_path_for_installation_directory directory for installation"
