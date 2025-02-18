@@ -2,11 +2,12 @@
 
 set -euo pipefail
 
+os_arch=$(uname -m)
 app_name=zen
 literal_name_of_installation_directory="src"
 universal_path_for_installation_directory="/usr/local/$literal_name_of_installation_directory"
 app_installation_directory="$universal_path_for_installation_directory/zen"
-official_package_location="https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-x86_64.tar.xz"
+official_package_location="https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-$os_arch.tar.xz"
 tar_location=$(mktemp /tmp/zen.XXXXXX.tar.xz)
 open_tar_application_data_location="zen"
 root_bin_path="/usr/bin"
@@ -22,12 +23,20 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
-echo "Welcome to Zen tarball installer, just chill and wait for the installation to complete!"
+echo -e "Welcome to Zen tarball installer, just chill and wait for the installation to complete!\n"
 
 sleep 1
 
+case "$os_arch" in
+    x86_64) echo "64-bit (Intel/AMD) architecture identified!" ;;
+    aarch64|arm64) echo "64-bit ARM architecture identified!" ;;
+    *)
+		echo "Zen doesn't support this architecture: $os_arch"
+		exit 1 ;;
+esac
+
 echo "Downloading the latest package"
-curl -L -o $tar_location $official_package_location
+curl -L --progress-bar -o $tar_location $official_package_location
 if [ $? -eq 0 ]; then
     echo OK
 else
