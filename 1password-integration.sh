@@ -26,6 +26,13 @@ rollback() {
     exit 1
 }
 
+# Check OS
+if [[ "$(uname)" != "Linux" ]]; then
+    echo "This script is only for Linux."
+    echo "Visit https://docs.zen-browser.app/guides/1password to learn more"
+    exit 1
+fi
+
 SUDO=
 if [ "$(id -u)" -ne 0 ]; then
     if ! available sudo; then
