@@ -17,6 +17,13 @@ desktop_in_local_applications="$local_application_path/$app_name.desktop"
 icon_path="$app_installation_directory/browser/chrome/icons/default/default128.png"
 executable_path=$app_installation_directory/zen
 
+# Check OS
+if [[ "$(uname)" != "Linux" ]]; then
+    echo "This script is only for Linux."
+    echo "Visit https://github.com/zen-browser/desktop#-installation to learn more about supported operating systems"
+    exit 1
+fi
+
 echo -e "Welcome to Zen tarball installer, just chill and wait for the installation to complete!\n"
 
 sleep 1
