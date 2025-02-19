@@ -23,7 +23,9 @@ sleep 1
 
 case "$os_arch" in
     x86_64) echo "64-bit (Intel/AMD) architecture identified!" ;;
-    aarch64|arm64) echo "64-bit ARM architecture identified!" ;;
+    aarch64|arm64)
+		echo "64-bit ARM architecture identified!"
+		official_package_location="https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-aarch64.tar.xz" ;;
     *)
 		echo "Zen doesn't support this architecture: $os_arch"
 		exit 1 ;;
