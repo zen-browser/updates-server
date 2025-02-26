@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<updates>
+  <update type="minor" displayVersion="1.8.2t" appVersion="1.8.2t" platformVersion="135.0.1" buildID="20250225111107">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/twilight/macos.mar" hashFunction="sha512" hashValue="fc16c4181da0d4b038243afedcf7ff98fd22698112050d600c0f92c3f4d818b879bc5afddac3346ec3b82ec59bd6ae0808ea391ae6c62da1ae1caf2b42a40a8d" size="125885203"/>
+  </update>
+</updates>
