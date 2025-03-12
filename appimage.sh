@@ -247,7 +247,11 @@ check_for_updates() {
         appimage_url="$ZEN_STABLE"
     fi
 
-    zsync_file="${HOME}/Downloads/$file_base.AppImage.zsync"
+    # Get the download directory using xdg-user-dir, using Downloads as default value
+	DOWNLOAD_DIR=$(xdg-user-dir DOWNLOAD || echo "${HOME}/Downloads")
+
+	# Set zsync file path
+	zsync_file="${DOWNLOAD_DIR}/${file_base}.AppImage.zsync"
 
     if check_installation_status "$file_base"; then
         log_info "Checking for updates..."
