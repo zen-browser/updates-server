@@ -162,11 +162,11 @@ process_appimage() {
     "${appimage_path}" --appimage-extract
 
     # Move .desktop file (from /squashfs-root only)
-    desktop_file=$(find squashfs-root -maxdepth 1 -name "*.desktop" | head -n 1)
+    desktop_file=$(find -L squashfs-root -maxdepth 1 -name "*.desktop" | head -n 1)
     mv "${desktop_file}" ~/.local/share/applications/${app_name}.desktop
 
     # Find PNG icon (from /squashfs-root only)
-    icon_file=$(find squashfs-root -maxdepth 1 -name "*.png" | head -n 1)
+    icon_file=$(find -L squashfs-root -maxdepth 1 -name "*.png" | head -n 1)
 
     # Resolve symlink if the icon is a symlink
     if [ -L "${icon_file}" ]; then
