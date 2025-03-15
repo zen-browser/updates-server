@@ -201,7 +201,7 @@ process_appimage() {
     ' "${desktop_file}" > "${desktop_file}.tmp" && mv "${desktop_file}.tmp" "${desktop_file}"
 
     # Clean up extracted files
-    rm -rf squashfs-root
+    rm -rf squashfs-root AppDir
 }
 
 uninstall_appimage() {
