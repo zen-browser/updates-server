@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# LICENSE:
 # Done by: https://github.com/Muko-Tabi
 # Twilight support added by: https://github.com/LeMoonStar
 # This script is licensed under the MIT License.
