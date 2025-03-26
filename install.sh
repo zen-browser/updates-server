@@ -16,44 +16,10 @@ desktop_in_local_applications="$local_application_path/$app_name.desktop"
 icon_path="$app_installation_directory/browser/chrome/icons/default/default128.png"
 executable_path=$app_installation_directory/zen
 
-echo -e "Welcome to Zen tarball installer!\n"
-sleep 1
-
-echo "What would you like to do?"
-echo "1) Install/Update Zen Browser"
-echo "2) Uninstall Zen Browser"
-echo "3) Exit"
-read -rn1 -p "Enter your choice [1/2/3]: " choice
-echo
-
-case $choice in
-  1)
-    parseTwilight "$@"
-    install
-    ;;
-  2)
-    uninstall
-    ;;
-  3)
-    echo "Exiting... Bye! 🐷"
-    exit 0
-    ;;
-  *)
-    echo "Invalid choice. Exiting."
-    exit 1
-    ;;
-esac
-
 install() {
   echo "We're installing Zen, just chill and wait for the installation to complete!\n"
   echo "Downloading the latest package"
   curl -L --progress-bar -o $tar_location $official_package_location
-  if [ $? -eq 0 ]; then
-      echo OK
-  else
-      echo "Download failed. Curl not found or not installed"
-      exit
-  fi
 
   echo "Extracting Zen Browser..."
   tar -xvJf $tar_location
@@ -127,7 +93,7 @@ install() {
 }
 
 parseTwilight() {
-  if [ "$1" == "--twilight" ]; then
+  if [ "${1:-}" == "--twilight" ]; then
     official_package_location="https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-x86_64.tar.xz"
     echo "You're currently in Twilight mode, this means you're downloading the latest experimental features and updates."
   fi
@@ -168,3 +134,31 @@ uninstall() {
   echo "Zen Browser has been uninstalled."
   exit 0
 }
+
+echo -e "Welcome to Zen tarball installer!\n"
+sleep 1
+
+echo "What would you like to do?"
+echo "1) Install/Update Zen Browser"
+echo "2) Uninstall Zen Browser"
+echo "3) Exit"
+read -rn1 -p "Enter your choice [1/2/3]: " choice
+echo
+
+case $choice in
+  1)
+    parseTwilight "$@"
+    install
+    ;;
+  2)
+    uninstall
+    ;;
+  3)
+    echo "Exiting... Bye! 🐷"
+    exit 0
+    ;;
+  *)
+    echo "Invalid choice. Exiting."
+    exit 1
+    ;;
+esac
