@@ -28,6 +28,7 @@ echo
 
 case $choice in
   1)
+    parseTwilight "$@"
     install
     ;;
   2)
@@ -123,6 +124,13 @@ install() {
   echo "Done, and done, have fun! 🐷"
 
   exit 0
+}
+
+parseTwilight() {
+  if [ "$1" == "--twilight" ]; then
+    official_package_location="https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-x86_64.tar.xz"
+    echo "You're currently in Twilight mode, this means you're downloading the latest experimental features and updates."
+  fi
 }
 
 remove() {
