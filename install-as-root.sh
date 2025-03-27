@@ -97,6 +97,21 @@ install() {
   exit 0
 }
 
+cleanup() {
+  echo -e "\n\nCleaning up...\n"
+  if [ -f "${tar_location:-}" ]; then
+    echo "Removing temporary tarball..."
+    rm -f "${tar_location:-}"
+  fi
+  if [ -d "$open_tar_application_data_location" ]; then
+    echo "Removing incomplete application directory..."
+    rm -rf "$open_tar_application_data_location"
+  fi
+  echo "If Zen Browser was partially installed, please run the script again to install/update/uninstall."
+  echo "Exiting gracefully..."
+  exit 1
+}
+
 determinePackage() {
   case "$os_arch" in
       x86_64) echo "64-bit (Intel/AMD) architecture identified!" ;;
@@ -155,6 +170,8 @@ uninstall() {
   echo "Zen Browser has been uninstalled."
   exit 0
 }
+
+trap cleanup SIGINT SIGTERM SIGHUP
 
 # Check OS
 if [[ "$(uname)" != "Linux" ]]; then
