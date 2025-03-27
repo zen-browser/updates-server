@@ -17,7 +17,7 @@ icon_path="$app_installation_directory/browser/chrome/icons/default/default128.p
 executable_path=$app_installation_directory/zen
 
 install() {
-  echo "We're installing Zen, just chill and wait for the installation to complete!\n"
+  echo -e "We're installing Zen, just chill and wait for the installation to complete!\n"
 
   # Set the official package download URL
   determinePackage "$@"
