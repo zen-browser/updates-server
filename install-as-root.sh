@@ -134,7 +134,8 @@ remove() {
 }
 
 uninstall() {
-  read -p "WARN: This will remove Zen Browser from your system. Do you wish to proceed? [y/N]: " confirm
+  read -rn1 -p "WARN: This will remove Zen Browser from your system. Do you wish to proceed? [y/N]: " confirm
+  echo
   if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
     echo "Nice save! We didn't remove Zen from your system."
     echo "Exiting..."
@@ -143,7 +144,8 @@ uninstall() {
   echo "Uninstalling Zen Browser..."
   remove
   echo "Keeping your profile data will let you continue where you left off if you reinstall Zen later."
-  read -p "Do you want to delete your Zen Profiles? This will remove all your bookmarks, history, and settings. [y/N]: " remove_profile
+  read -rn1 -p "Do you want to delete your Zen Profiles? This will remove all your bookmarks, history, and settings. [y/N]: " remove_profile
+  echo
   if [[ "$remove_profile" =~ ^[Yy]$ ]]; then
     echo "Removing Zen Profiles data..."
     rm -rf "$HOME/.zen"
