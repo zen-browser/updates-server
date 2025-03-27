@@ -8,7 +8,6 @@ literal_name_of_installation_directory="src"
 universal_path_for_installation_directory="/usr/local/$literal_name_of_installation_directory"
 app_installation_directory="$universal_path_for_installation_directory/zen"
 official_package_location="" # Placeholder for download URL, to be set later
-tar_location=$(mktemp /tmp/zen.XXXXXX.tar.xz)
 open_tar_application_data_location="zen"
 root_bin_path="/usr/bin"
 root_application_path="/usr/share/applications"
@@ -24,6 +23,7 @@ install() {
   determinePackage "$@"
 
   echo "Downloading the latest package"
+  tar_location=$(mktemp /tmp/zen.XXXXXX.tar.xz)
   curl -L --progress-bar -o $tar_location $official_package_location
 
   echo "Extracting Zen Browser..."
