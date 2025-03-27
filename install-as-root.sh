@@ -149,7 +149,8 @@ remove() {
 }
 
 uninstall() {
-  read -rn1 -p "WARN: This will remove Zen Browser from your system. Do you wish to proceed? [y/N]: " confirm
+  echo -n "WARN: This will remove Zen Browser from your system. Do you wish to proceed? [y/N]: "
+  read -rn1 confirm < /dev/tty
   echo
   if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
     echo "Nice save! We didn't remove Zen from your system."
@@ -159,7 +160,8 @@ uninstall() {
   echo "Uninstalling Zen Browser..."
   remove
   echo "Keeping your profile data will let you continue where you left off if you reinstall Zen later."
-  read -rn1 -p "Do you want to delete your Zen Profiles? This will remove all your bookmarks, history, and settings. [y/N]: " remove_profile
+  echo -n "Do you want to delete your Zen Profiles? This will remove all your bookmarks, history, and settings. [y/N]: "
+  read -rn1 remove_profile < /dev/tty
   echo
   if [[ "$remove_profile" =~ ^[Yy]$ ]]; then
     echo "Removing Zen Profiles data..."
@@ -194,7 +196,8 @@ echo "What would you like to do?"
 echo "1) Install/Update Zen Browser"
 echo "2) Uninstall Zen Browser"
 echo "3) Exit"
-read -rn1 -p "Enter your choice [1/2/3]: " choice
+echo -en "\nEnter your choice [1/2/3]: "
+read -rn1 choice < /dev/tty
 echo
 
 case $choice in
