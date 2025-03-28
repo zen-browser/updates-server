@@ -1,5 +1,5 @@
 <img src="./favicon.svg" height="200" align="left"/>
 
-### `Zen Browser update server`
+### `Zen Browser Update Server`
 
-Resource server used for firefox's automatic updates system
+Resource server used for Zen Browser's automatic updates system.
