@@ -2,11 +2,11 @@
 
 set -euo pipefail
 
-app_name=zen
+app_name=zen-twilight
 literal_name_of_installation_directory=".tarball-installations"
 universal_path_for_installation_directory="$HOME/$literal_name_of_installation_directory"
-app_installation_directory="$universal_path_for_installation_directory/zen"
-official_package_location="https://github.com/zen-browser/desktop/releases/latest/download/zen.linux-x86_64.tar.xz"
+app_installation_directory="$universal_path_for_installation_directory/$app_name"
+official_package_location="https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-x86_64.tar.xz"
 tar_location=$(mktemp /tmp/zen.XXXXXX.tar.xz)
 open_tar_application_data_location="zen"
 local_bin_path="$HOME/.local/bin"
@@ -16,7 +16,7 @@ desktop_in_local_applications="$local_application_path/$app_name.desktop"
 icon_path="$app_installation_directory/browser/chrome/icons/default/default128.png"
 executable_path=$app_installation_directory/zen
 
-echo "Welcome to Zen tarball installer, just chill and wait for the installation to complete!"
+echo "Welcome to Zen Twilight tarball installer, just chill and wait for the installation to complete!"
 
 sleep 1
 
@@ -29,7 +29,7 @@ else
     exit
 fi
 
-echo "Extracting Zen Browser..."
+echo "Extracting Zen Twilight..."
 tar -xvJf $tar_location
 
 echo "Untarred successfully!"
@@ -57,7 +57,7 @@ fi
 
 mv $open_tar_application_data_location $app_installation_directory
 
-echo "Zen successfully moved to your safe place!"
+echo "Zen Twilight successfully moved to your safe place!"
 
 rm $tar_location
 
@@ -82,7 +82,7 @@ fi
 touch $desktop_in_local_applications
 echo "
 [Desktop Entry]
-Name=Zen Browser
+Name=Zen Twilight
 Comment=Experience tranquillity while browsing the web without people tracking you!
 Keywords=web;browser;internet
 Exec=$executable_path %u
