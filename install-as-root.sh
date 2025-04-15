@@ -12,7 +12,7 @@ open_tar_application_data_location="zen"
 root_bin_path="/usr/bin"
 root_application_path="/usr/share/applications"
 app_bin_in_root_bin="$root_bin_path/$app_name"
-desktop_in_local_applications="$root_application_path/$app_name.desktop"
+desktop_in_applications="$root_application_path/$app_name.desktop"
 icon_path="$app_installation_directory/browser/chrome/icons/default/default128.png"
 executable_path=$app_installation_directory/zen
 
@@ -63,32 +63,34 @@ install() {
   fi
 
 
-  touch $desktop_in_local_applications
-  echo "
-  [Desktop Entry]
-  Name=Zen Browser
-  Comment=Experience tranquillity while browsing the web without people tracking you!
-  Keywords=web;browser;internet
-  Exec=$executable_path %u
-  Icon=$icon_path
-  Terminal=false
-  StartupNotify=true
-  StartupWMClass=zen
-  NoDisplay=false
-  Type=Application
-  MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;
-  Categories=Network;WebBrowser;
-  Actions=new-window;new-private-window;profile-manager-window;
-  [Desktop Action new-window]
-  Name=Open a New Window
-  Exec=$executable_path --new-window %u
-  [Desktop Action new-private-window]
-  Name=Open a New Private Window
-  Exec=$executable_path --private-window %u
-  [Desktop Action profile-manager-window]
-  Name=Open the Profile Manager
-  Exec=$executable_path --ProfileManager
-  " >> $desktop_in_local_applications
+  cat << EOF > $desktop_in_applications
+[Desktop Entry]
+Name=Zen Browser
+Comment=Experience tranquillity while browsing the web without people tracking you!
+Keywords=web;browser;internet
+Exec=$executable_path %u
+Icon=$icon_path
+Terminal=false
+StartupNotify=true
+StartupWMClass=zen
+NoDisplay=false
+Type=Application
+MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;
+Categories=Network;WebBrowser;
+Actions=new-window;new-private-window;profile-manager-window;
+
+[Desktop Action new-window]
+Name=Open a New Window
+Exec=$executable_path --new-window %u
+
+[Desktop Action new-private-window]
+Name=Open a New Private Window
+Exec=$executable_path --private-window %u
+
+[Desktop Action profile-manager-window]
+Name=Open the Profile Manager
+Exec=$executable_path --ProfileManager
+EOF
 
   echo "Created desktop entry successfully"
   echo "Installation is successful"
@@ -142,9 +144,9 @@ remove() {
     rm -rf "$app_installation_directory"
   fi
 
-  if [ -f "$desktop_in_local_applications" ]; then
+  if [ -f "$desktop_in_applications" ]; then
     echo "Old desktop files are found, removing..."
-    rm "$desktop_in_local_applications"
+    rm "$desktop_in_applications"
   fi
 }
 
