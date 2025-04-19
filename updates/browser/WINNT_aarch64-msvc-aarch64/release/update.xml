@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <updates>
-  <update type="minor" displayVersion="1.11.4b" appVersion="1.11.4b" platformVersion="137.0.2" buildID="20250417103109">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.11.4b/windows-arm64.mar" hashFunction="sha512" hashValue="7f7dfa89d55f3c60e98cc8fde8d3b0200f6f1bf2906e434d0dd38c37f50c2a63b040cfd7a4544353692afc0d3bcfd147fca263a314cbbc872ca9c1fe5b8db09c" size="72806099"/>
+  <update type="minor" displayVersion="1.11.5b" appVersion="1.11.5b" platformVersion="137.0.2" buildID="20250419054652">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.11.5b/windows-arm64.mar" hashFunction="sha512" hashValue="a3cdf3010aebf2f30425489ad4cf00eae6ecb15e5a72a615e1d7a4ff78313221c9b330ed4ccedc707a0a0dd130f72164dbd3100bb35ea7bc38fa9911c15cdc88" size="72808155"/>
   </update>
 </updates>
