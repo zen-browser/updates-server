@@ -2,4 +2,4 @@
 
 ### `Zen Browser update server`
 
-Resource server used for firefox's automatic updates system
+Resource server used for automatic updates system in Zen
