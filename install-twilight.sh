@@ -83,7 +83,7 @@ touch $desktop_in_local_applications
 echo "
 [Desktop Entry]
 Name=Zen Twilight
-Comment=Development builds of Zen Browser with latest experimental features and updates
+Comment=Development build of Zen Browser with latest experimental features and updates
 Keywords=web;browser;internet
 Exec=$executable_path %u
 Icon=$icon_path
