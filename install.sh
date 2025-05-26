@@ -5,7 +5,7 @@ set -euo pipefail
 app_name=zen-twilight
 literal_name_of_installation_directory=".tarball-installations"
 universal_path_for_installation_directory="$HOME/$literal_name_of_installation_directory"
-app_installation_directory="$universal_path_for_installation_directory/$app_name"
+app_installation_directory="$universal_path_for_installation_directory/zen-twilight"
 official_package_location="https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-x86_64.tar.xz"
 tar_location=$(mktemp /tmp/zen.XXXXXX.tar.xz)
 open_tar_application_data_location="zen"
