@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <updates>
-  <update type="minor" displayVersion="1.13t" appVersion="1.13t" platformVersion="139.0.1" buildID="20250529070650">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/twilight/linux.mar" hashFunction="sha512" hashValue="22ae0453e98fcad70af14abf5ab17054d175c60544abf04517d75afd2a598d83ad58e24c4e5a12bf48e1fd522e2a5648c5ced7fdffff00dfa70fceff19c332cc" size="80168013"/>
+  <update type="minor" displayVersion="1.13t" appVersion="1.13t" platformVersion="139.0.1" buildID="20250529110242">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/twilight/linux.mar" hashFunction="sha512" hashValue="61e90f3288d2546b06badca0eaee3bf54493f327206992c2126badcfd1b0245861dcd3d41dd4cdc6856cd73ff571696ca34408e03d5c96aebbcb4ebdcf7eb737" size="80119745"/>
   </update>
 </updates>
