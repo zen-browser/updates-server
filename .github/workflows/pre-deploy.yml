@@ -1,4 +1,6 @@
 name: Pre-Deploy Updates Server
+permissions:
+  contents: write
 
 on:
   push:
