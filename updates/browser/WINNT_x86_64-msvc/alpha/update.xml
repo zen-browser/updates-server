@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<updates>
+  <update type="minor" displayVersion="1.17.11b" appVersion="1.17.11b" platformVersion="145.0.2" buildID="20251128115757">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.17.11b/windows.mar" hashFunction="sha512" hashValue="64bb0a9139ca339119d517db5a65452dda5622418c9b6e05628a901583f23ef2bed0a3570bd247b1c1b7675f98e0c7f8c8ce2477707aa5b5e41cf6588e6c60c0" size="99669170"/>
+  </update>
+</updates>
