@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <updates>
-  <update type="minor" displayVersion="1.18t" appVersion="1.18t" platformVersion="146.0" buildID="20251208124121">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/twilight/linux-aarch64.mar" hashFunction="sha512" hashValue="4ba5786685d763d925d0b87d02f0219205d3e466a35d2248f59d5060943042522e9a313db6f23b38fab249a2676d1bef3e4e5d87e208c591fc78e505286e728f" size="72739201"/>
+  <update type="minor" displayVersion="1.18t" appVersion="1.18t" platformVersion="146.0" buildID="20251209121236">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/twilight/linux-aarch64.mar" hashFunction="sha512" hashValue="a8eeef53a665ccec37dd5d91afb4888781bf508db1311c14b4cb001cad9754bc8b9e0b99f506d8ac1a4c66e132bf151b01ad0551e638e3af953ff700c2e37347" size="72741785"/>
   </update>
 </updates>
