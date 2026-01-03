@@ -89,8 +89,10 @@ fi
 
 touch $app_bin_in_local_bin
 chmod u+x $app_bin_in_local_bin
-echo "#!/bin/bash
-$executable_path" >> $app_bin_in_local_bin
+cat > "$app_bin_in_local_bin" << EOF
+#!/bin/bash
+exec "$executable_path" "\$@"
+EOF
 
 echo "Created executable for your \$PATH if you ever need"
 
