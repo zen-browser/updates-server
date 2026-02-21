@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <updates>
-  <update type="minor" displayVersion="1.18.8b" appVersion="1.18.8b" platformVersion="147.0.3" buildID="20260215111159">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.18.8b/linux-aarch64.mar" hashFunction="sha512" hashValue="4f06a965bccc0b5bb83fdfb72481a02f793cd19e99996f2fed71a117b7124c01ee2d3c7219ee02f2bf1b88f7773a1881d1be6ad8c3b3026d4aeda61a4fd82517" size="74405813"/>
+  <update type="minor" displayVersion="1.18.10b" appVersion="1.18.10b" platformVersion="147.0.4" buildID="20260220112217">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.18.10b/linux-aarch64.mar" hashFunction="sha512" hashValue="de02acf092044b7d5a6d4179f8cda5fb829aa714f8e34e8efef5dcee625a5bb97f302a6866881adf53d865e6f12ac1839c67df92e78bbdecb2a37c2db62b910d" size="74453269"/>
   </update>
 </updates>
