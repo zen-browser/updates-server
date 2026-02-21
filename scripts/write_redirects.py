@@ -36,7 +36,7 @@ for new, old in REDIRECTS.items():
                     update_path = os.path.join(old_branch_path, update)
                     with open(update_path, "r") as f:
                         content = f.read()
-                        for r, v in REPLACE:
+                        for r, v in REPLACE.items():
                             content = content.replace(r, v)
                         with open(update_path, "w") as f2:
                             f2.write(content)
