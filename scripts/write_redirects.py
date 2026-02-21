@@ -15,6 +15,10 @@ REDIRECTS = {
 
 UPDATES_ROOT = "updates/browser"
 
+REPLACE = {
+    "/download/twilight/": "/download/twilight-1/"
+}
+
 for new, old in REDIRECTS.items():
     print(f"Redirecting {old} -> {new}")
     # just create and copy the content of the old file to the new file
@@ -32,6 +36,10 @@ for new, old in REDIRECTS.items():
                     update_path = os.path.join(old_branch_path, update)
                     with open(update_path, "r") as f:
                         content = f.read()
+                        for r, v in REPLACE:
+                            content = content.replace(r, v)
+                        with open(update_path, "w") as f2:
+                            f2.write(content)
                         new_update_path = os.path.join(new_branch_path, update)
                         with open(new_update_path, "w") as nf:
                             nf.write(content)
