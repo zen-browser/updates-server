@@ -9,7 +9,8 @@ universal_path_for_installation_directory="$HOME/$literal_name_of_installation_d
 app_installation_directory="$universal_path_for_installation_directory/zen"
 official_package_location="" # Placeholder for download URL, to be set later
 tar_location=$(mktemp /tmp/zen.XXXXXX.tar.xz)
-open_tar_application_data_location="zen"
+temp_extract_dir=$(mktemp -d /tmp/zen.extract.XXXXXXXXXX)
+open_tar_application_data_location="$temp_extract_dir/zen"
 local_bin_path="$HOME/.local/bin"
 local_application_path="$HOME/.local/share/applications"
 app_bin_in_local_bin="$local_bin_path/$app_name"
@@ -51,7 +52,7 @@ else
 fi
 
 echo "Extracting Zen Browser..."
-tar -xvJf $tar_location
+tar -xvJf $tar_location -C $temp_extract_dir
 
 echo "Untarred successfully!"
 
@@ -81,6 +82,7 @@ mv $open_tar_application_data_location $app_installation_directory
 echo "Zen successfully moved to your safe place!"
 
 rm $tar_location
+rm -rf $temp_extract_dir
 
 if [ ! -d $local_bin_path ]; then
   echo "$local_bin_path not found, creating it for you"
