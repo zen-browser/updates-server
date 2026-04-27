@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<updates>
+  <update type="minor" displayVersion="1.19.9b" appVersion="1.19.9b" platformVersion="150.0" buildID="20260424101735">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.19.9b/windows-arm64.mar" hashFunction="sha512" hashValue="a535cf5631049170d5f31e4208893c981debba5e76199199183865a635767018ba6775d10d6a040e1cab167e4df4fc1e8c9234323b4dab37e32163c6269ad8bb" size="87114319"/>
+  </update>
+</updates>
