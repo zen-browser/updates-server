@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <updates>
-  <update type="minor" displayVersion="1.20b" appVersion="1.20b" platformVersion="151.0.1" buildID="20260524090131">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.20b/windows.mar" hashFunction="sha512" hashValue="9c191b1fd161df3d8f277a7b9e92f2f01e7f3eb72a759a5626cc4538a1233dba00816a1f5e3c4298c54013f360b3c6289f6845298f13458031592b1f17900191" size="103341375"/>
+  <update type="minor" displayVersion="1.20.1b" appVersion="1.20.1b" platformVersion="151.0.2" buildID="20260527114101">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.20.1b/windows.mar" hashFunction="sha512" hashValue="5802d5ccba41fd853f811412e08904c7e941f5d18b250b25a123121044365769583eb8adf335cdc743839776d48a5cb989383cefbfd067ef890b12e5ed089279" size="103300055"/>
   </update>
 </updates>
