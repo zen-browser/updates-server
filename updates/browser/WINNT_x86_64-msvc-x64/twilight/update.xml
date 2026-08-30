@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <updates>
-  <update type="minor" displayVersion="1.22t" appVersion="1.22t" platformVersion="154.0.1" buildID="20260828013937">
-    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/twilight/windows.mar" hashFunction="sha512" hashValue="9dfe7d35e1a183ec065c054bb564dc459bf846350d6511e92870e1e661e149386bec063415721288d7a44cc80ea45d8148e75f0b40b3588b1f92bf61b5b80d98" size="106326204"/>
+  <update type="minor" displayVersion="1.22t" appVersion="1.22t" platformVersion="155.0" buildID="20260829110434">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/twilight/windows.mar" hashFunction="sha512" hashValue="6fbbb674bae01b6feec970aa8d7bf8e5a1bd81fdd171a1ce241100a82be5e934ebe3f9ca3b1772f4ba612e365f84c9ab1705df89804eb289d48caf031ba0ed76" size="106271320"/>
   </update>
 </updates>
