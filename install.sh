@@ -45,11 +45,11 @@ install() {
     mkdir $local_bin_path
   fi
 
-  touch $app_bin_in_local_bin
-  chmod u+x $app_bin_in_local_bin
-  echo "#!/bin/bash
-  $executable_path" >> $app_bin_in_local_bin
-
+  cat << EOF > "$app_bin_in_local_bin"
+#!/bin/bash
+exec "$executable_path" "\$@"
+EOF
+  chmod 755 $app_bin_in_local_bin
   echo "Created executable for your \$PATH if you ever need"
 
   if [ ! -d $local_application_path ]; then
