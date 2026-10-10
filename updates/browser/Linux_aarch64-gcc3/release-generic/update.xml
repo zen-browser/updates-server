@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<updates>
+  <update type="minor" displayVersion="1.23.2b" appVersion="1.23.2b" platformVersion="157.0.1" buildID="20261009073723">
+    <patch type="complete" URL="https://github.com/zen-browser/desktop/releases/download/1.23.2b/linux-aarch64.mar" hashFunction="sha512" hashValue="12e58c55eb2181e7d7da3cbfe5c3589b89ec00ea685c25c79f37436a141176a5dd38d135f25118fa2fe1cd471ec3404700e4031695edc16e3dbd715fe064cbca" size="98819102"/>
+  </update>
+</updates>
